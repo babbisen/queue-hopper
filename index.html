@@ -2,40 +2,53 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Person Teller</title>
-  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <div id="counter" class="counter">0</div>
-  <div class="controls">
-    <button id="btnIn">INN</button>
-    <button id="btnOut">UT</button>
+<body class="min-h-screen flex flex-col items-center justify-start py-10">
+  <div id="counter" class="text-7xl font-bold my-8">0</div>
+  <div class="flex space-x-4">
+    <button id="btnIn" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded">INN</button>
+    <button id="btnOut" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded">UT</button>
   </div>
-  <div id="status" class="status">
+  <div id="status" class="mt-6 text-lg">
     <div>Kapasitet: <span id="capacityDisplay"></span></div>
     <div>Ledige plasser: <span id="availableDisplay"></span></div>
   </div>
-  <div class="actions">
-    <button id="btnUndo">Angre</button>
-    <button id="btnHistory">Historikk</button>
-    <button id="btnSettings">Innstillinger</button>
+  <div class="mt-6 flex space-x-4">
+    <button id="btnUndo" class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded">Angre</button>
+    <button id="btnHistory" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded">Historikk</button>
+    <button id="btnSettings" class="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded">Innstillinger</button>
   </div>
 
-  <div id="historyModal" class="modal hidden">
-    <h2>Historikk</h2>
-    <label>Fra: <input type="datetime-local" id="historyFrom"></label>
-    <label>Til: <input type="datetime-local" id="historyTo"></label>
-    <button id="historyFilter">Filter</button>
-    <ul id="historyList"></ul>
-    <button id="historyClose">Lukk</button>
+  <div id="historyModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <div class="bg-white p-6 rounded shadow w-80">
+      <h2 class="text-xl font-semibold mb-4">Historikk</h2>
+      <label class="block mb-2">Fra:
+        <input type="datetime-local" id="historyFrom" class="mt-1 border rounded w-full p-1" />
+      </label>
+      <label class="block mb-2">Til:
+        <input type="datetime-local" id="historyTo" class="mt-1 border rounded w-full p-1" />
+      </label>
+      <button id="historyFilter" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Filter</button>
+      <ul id="historyList" class="list-disc pl-5 my-4 max-h-40 overflow-y-auto"></ul>
+      <button id="historyClose" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded mt-2">Lukk</button>
+    </div>
   </div>
 
-  <div id="settingsModal" class="modal hidden">
-    <h2>Innstillinger</h2>
-    <label>Kapasitet: <input type="number" id="capacityInput" min="1" /></label>
-    <label>Nullstillingsklokkeslett: <input type="time" id="resetTimeInput" /></label>
-    <button id="settingsSave">Lagre</button>
-    <button id="settingsClose">Lukk</button>
+  <div id="settingsModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <div class="bg-white p-6 rounded shadow w-80">
+      <h2 class="text-xl font-semibold mb-4">Innstillinger</h2>
+      <label class="block mb-2">Kapasitet:
+        <input type="number" id="capacityInput" min="1" class="mt-1 border rounded w-full p-1" />
+      </label>
+      <label class="block mb-2">Nullstillingsklokkeslett:
+        <input type="time" id="resetTimeInput" class="mt-1 border rounded w-full p-1" />
+      </label>
+      <button id="settingsSave" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Lagre</button>
+      <button id="settingsClose" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded ml-2">Lukk</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
