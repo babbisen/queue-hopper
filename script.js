@@ -27,11 +27,11 @@ function updateDisplay() {
 
 function updateIndicator() {
   const body = document.body;
-  body.classList.remove('green', 'yellow', 'red');
+  body.classList.remove('bg-green-100', 'bg-yellow-100', 'bg-red-100');
   const ratio = state.count / state.capacity;
-  if (ratio < 0.8) body.classList.add('green');
-  else if (ratio < 1) body.classList.add('yellow');
-  else body.classList.add('red');
+  if (ratio < 0.8) body.classList.add('bg-green-100');
+  else if (ratio < 1) body.classList.add('bg-yellow-100');
+  else body.classList.add('bg-red-100');
 }
 
 function logEvent(delta) {
