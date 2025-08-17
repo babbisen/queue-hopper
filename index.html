@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Person Teller</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="counter" class="counter">0</div>
+  <div class="controls">
+    <button id="btnIn">INN</button>
+    <button id="btnOut">UT</button>
+  </div>
+  <div id="status" class="status">
+    <div>Kapasitet: <span id="capacityDisplay"></span></div>
+    <div>Ledige plasser: <span id="availableDisplay"></span></div>
+  </div>
+  <div class="actions">
+    <button id="btnUndo">Angre</button>
+    <button id="btnHistory">Historikk</button>
+    <button id="btnSettings">Innstillinger</button>
+  </div>
+
+  <div id="historyModal" class="modal hidden">
+    <h2>Historikk</h2>
+    <label>Fra: <input type="datetime-local" id="historyFrom"></label>
+    <label>Til: <input type="datetime-local" id="historyTo"></label>
+    <button id="historyFilter">Filter</button>
+    <ul id="historyList"></ul>
+    <button id="historyClose">Lukk</button>
+  </div>
+
+  <div id="settingsModal" class="modal hidden">
+    <h2>Innstillinger</h2>
+    <label>Kapasitet: <input type="number" id="capacityInput" min="1" /></label>
+    <label>Nullstillingsklokkeslett: <input type="time" id="resetTimeInput" /></label>
+    <button id="settingsSave">Lagre</button>
+    <button id="settingsClose">Lukk</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
