@@ -1,0 +1,8 @@
+{
+  "name": "queue-hopper",
+  "version": "0.1.0",
+  "description": "Simple person counter",
+  "scripts": {
+    "test": "echo \"No tests\""
+  }
+}
