@@ -6,20 +6,30 @@
   <title>Person Teller</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-start py-10">
-  <div id="counter" class="text-7xl font-bold my-8">0</div>
-  <div class="flex space-x-4">
-    <button id="btnIn" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded">INN</button>
-    <button id="btnOut" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded">UT</button>
-  </div>
-  <div id="status" class="mt-6 text-lg">
-    <div>Kapasitet: <span id="capacityDisplay"></span></div>
-    <div>Ledige plasser: <span id="availableDisplay"></span></div>
-  </div>
-  <div class="mt-6 flex space-x-4">
-    <button id="btnUndo" class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded">Angre</button>
-    <button id="btnHistory" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded">Historikk</button>
-    <button id="btnSettings" class="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded">Innstillinger</button>
+<body class="min-h-screen flex flex-col items-center py-10 bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+  <div class="w-full max-w-[420px] flex flex-col items-center">
+    <div class="w-full flex justify-end mb-4 space-x-4">
+      <div class="text-right text-sm">
+        <div>Kapasitet: <span id="capacityDisplay"></span></div>
+        <div>Ledige plasser: <span id="availableDisplay"></span></div>
+        <div id="forecastDisplay" class="text-xs"></div>
+      </div>
+      <button id="btnSettings" class="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full">⚙️</button>
+    </div>
+
+    <div id="counter" class="text-7xl font-bold font-mono tabular-nums my-8">0</div>
+    <div id="statusBadge" class="text-sm px-2 py-1 rounded-full"></div>
+
+    <div class="flex space-x-4 mt-6">
+      <button id="btnIn" class="px-8 py-4 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-full text-2xl">INN</button>
+      <button id="btnOut" class="px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-full text-2xl">UT</button>
+    </div>
+
+    <div class="mt-6 flex space-x-4">
+      <button id="btnUndo" class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded">Angre</button>
+      <button id="btnHistory" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded">Historikk</button>
+      <button id="btnReport" class="px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded hidden">Rapport</button>
+    </div>
   </div>
 
   <div id="historyModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
@@ -37,6 +47,19 @@
     </div>
   </div>
 
+  <div id="reportModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <div class="bg-white p-6 rounded shadow w-80">
+      <h2 class="text-xl font-semibold mb-4">Rapport</h2>
+      <table class="w-full text-sm">
+        <thead>
+          <tr><th class="text-left">Dato</th><th class="text-left">Inn</th><th class="text-left">Ut</th><th class="text-left">Peak</th><th class="text-left">Peak-tid</th></tr>
+        </thead>
+        <tbody id="reportTable"></tbody>
+      </table>
+      <button id="reportClose" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded mt-4">Lukk</button>
+    </div>
+  </div>
+
   <div id="settingsModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
     <div class="bg-white p-6 rounded shadow w-80">
       <h2 class="text-xl font-semibold mb-4">Innstillinger</h2>
@@ -45,6 +68,18 @@
       </label>
       <label class="block mb-2">Nullstillingsklokkeslett:
         <input type="time" id="resetTimeInput" class="mt-1 border rounded w-full p-1" />
+      </label>
+      <label class="block mb-2">Rolle:
+        <select id="roleSelect" class="mt-1 border rounded w-full p-1">
+          <option value="guard">Vekter</option>
+          <option value="admin">Admin</option>
+        </select>
+      </label>
+      <label class="block mb-2">Modus:
+        <select id="themeSelect" class="mt-1 border rounded w-full p-1">
+          <option value="light">Lys</option>
+          <option value="dark">Mørk</option>
+        </select>
       </label>
       <button id="settingsSave" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Lagre</button>
       <button id="settingsClose" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded ml-2">Lukk</button>
